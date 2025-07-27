@@ -56,6 +56,9 @@ spec:
           annotations: {{ toYaml . | nindent 12 }}
           {{- end }}
         spec:
+          {{- if $job.runtimeClassName }}
+          runtimeClassName: {{ $job.runtimeClassName }}
+          {{- end }}
           {{- if $.Values.rbac.enabled }}
           {{- if $.Values.rbac.serviceAccount.name }}
           serviceAccountName: {{ $.Values.rbac.serviceAccount.name }}
